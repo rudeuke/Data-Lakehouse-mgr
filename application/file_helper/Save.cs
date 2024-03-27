@@ -1,12 +1,15 @@
+using application.Enums;
+
 namespace application.file_helper
 {
     public class Save
     {
-        public static bool TextFile(string content)
+        public static bool ToFile(string content, string fileName, FileExtension fileExtension)
         {
+            var path = $"../{fileName}.{fileExtension}";
             try
             {
-                File.WriteAllText("../test.txt", content);
+                File.WriteAllText(path, content);
             }
             catch (Exception e)
             {
