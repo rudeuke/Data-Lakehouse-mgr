@@ -10,9 +10,11 @@
             //check if the files exist (and DB)
                 //if not, save the files
 
-            file_helper.Save.TextFile(
-                api_helper.Serialization.ReturnTextFromRequest(
-                    api_helper.Request.Get("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en")));
+            File_helper.Save.ToFile(
+                Api_helper.Serialization.ReturnTextFromRequest(
+                    Api_helper.Request.Get("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en")),
+                    "test",
+                    Enums.FileExtension.txt);
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace application.api_helper
+namespace application.Api_helper
 {
     public class Serialization
     {

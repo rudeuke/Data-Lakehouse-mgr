@@ -1,4 +1,4 @@
-namespace application.file_helper
+namespace application.File_helper
 {
     public class Check
     {
