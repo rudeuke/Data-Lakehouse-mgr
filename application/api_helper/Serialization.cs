@@ -2,7 +2,7 @@ namespace application.Api_helper
 {
     public class Serialization
     {
-        public static string ReturnTextFromRequest(HttpResponseMessage response)
+        public static string ReturnTextFromResponse(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)
             {
