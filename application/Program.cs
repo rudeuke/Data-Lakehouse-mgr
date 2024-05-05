@@ -14,7 +14,7 @@ namespace application
 
             //get list of files from the API
             //check if the files exist (and DB)
-                //if not, save the files
+            //if not, save the files
 
             File_helper.Save.ToFile(
                 Api_helper.Serialization.ReturnTextFromResponse(
@@ -31,10 +31,17 @@ namespace application
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    string connectionString = hostContext.Configuration.GetConnectionString("DefaultConnection");
+                    string? connectionString = hostContext.Configuration.GetConnectionString("DefaultConnection");
 
-                    services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlite(connectionString));
+                    if (connectionString != null)
+                    {
+                        services.AddDbContext<ApplicationDbContext>(options => 
+                            options.UseSqlite(connectionString));
+                    }
+                    else
+                    {
+                        throw new ArgumentNullException("Connection string is null");
+                    }
                 });
     }
 }
