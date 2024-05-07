@@ -1,4 +1,4 @@
-namespace Application.Configuration
+namespace application.Configuration
 {
     public interface IFileStorageConfiguration
     {
