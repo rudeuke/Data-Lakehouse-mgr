@@ -6,5 +6,5 @@ public class ApplicationDbContext : DbContext
     {
     }
 
-    public DbSet<application.Models.File> Files { get; set; }
+    public DbSet<application.Domain.Entities.File> Files { get; set; }
 }

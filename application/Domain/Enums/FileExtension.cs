@@ -1,4 +1,4 @@
-namespace application.Enums
+namespace application.Domain.Enums
 {
     public enum FileExtension
     {

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace application.Models
+namespace application.Domain.Entities
 {
     public class File
     {
