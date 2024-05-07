@@ -1,7 +1,7 @@
 using application.Domain.Enums;
 using application.Services.FileService;
 
-namespace application.Repositories
+namespace application.Repositories.FileRepository
 {
     public class FileRepository : IFileRepository
     {

@@ -1,6 +1,6 @@
 using application.Services.ApiService;
 
-namespace application.Repositories
+namespace application.Repositories.ApiRepository
 {
     public class ApiRepository : IApiRepository
     {

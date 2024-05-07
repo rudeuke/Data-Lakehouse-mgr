@@ -1,4 +1,4 @@
-namespace application.Repositories
+namespace application.Repositories.ApiRepository
 {
     public interface IApiRepository
     {

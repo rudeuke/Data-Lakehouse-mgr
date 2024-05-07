@@ -1,6 +1,6 @@
 using application.Domain.Enums;
 
-namespace application.Repositories
+namespace application.Repositories.FileRepository
 {
     public interface IFileRepository
     {
