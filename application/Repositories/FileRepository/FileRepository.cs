@@ -11,9 +11,9 @@ namespace application.Repositories.FileRepository
         {
             _fileService = fileService;
         }
-        public bool FileExists(string fileName)
+        public bool FileExists(string fileName, FileExtension extension)
         {
-            return _fileService.FileExists(fileName);
+            return _fileService.FileExists(fileName, extension);
         }
 
         public void CreateFile(string fileName, string content, FileExtension extension)

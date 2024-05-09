@@ -2,6 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using application.Repositories.FileRepository;
+using application.Repositories.ApiRepository;
+using application.Services.FileService;
+using application.Services.ApiService;
+using application.Data;
 
 namespace application
 {
@@ -32,6 +37,12 @@ namespace application
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddScoped<IFileService, FileService>();
+                    services.AddScoped<IApiService, ApiService>();
+
+                    services.AddScoped<IFileRepository, FileRepository>();
+                    services.AddScoped<IApiRepository, ApiRepository>();
+
                     string? connectionString = hostContext.Configuration.GetConnectionString("DefaultConnection");
 
                     if (connectionString != null)
