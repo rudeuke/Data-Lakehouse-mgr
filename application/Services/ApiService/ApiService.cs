@@ -14,8 +14,10 @@ namespace application.Services.ApiService
             return await _httpClient.GetAsync(url);
         }
 
-        public async Task<string> GetApiResponseContentAsync(HttpResponseMessage response)
+        public async Task<string> GetApiResponseContentAsync(string url)
         {
+            var response = await GetApiResponseAsync(url);
+
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsStringAsync();
