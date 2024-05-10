@@ -6,6 +6,8 @@ using application.Repositories.FileRepository;
 using application.Services.FileService;
 using application.Services.ApiService;
 using application.Data;
+using application.Configuration;
+using application.Domain.Enums;
 
 namespace application
 {
@@ -13,19 +15,15 @@ namespace application
     {
         static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-            Console.WriteLine("Hello World!");
+            IServiceProvider serviceProvider = CreateHostBuilder(args).Build().Services;
 
+            var apiService = serviceProvider.GetRequiredService<IApiService>();
+            var diskFileService = serviceProvider.GetRequiredService<IDiskFileService>();
+            var databaseFileService = serviceProvider.GetRequiredService<IDatabaseFileService>();
 
-            //get list of files from the API
-            //check if the files exist (and DB)
-            //if not, save the files
-
-            // File_helper.Save.ToFile(
-            //     Api_helper.Serialization.ReturnTextFromResponse(
-            //         Api_helper.Request.Get("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en")),
-            //         "test",
-            //         Enums.FileExtension.txt);
+            var testData = apiService.GetApiResponseContentAsync("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en");
+            diskFileService.SaveFileToDisk("Test filename", testData.Result, FileExtension.txt);
+            databaseFileService.CreateFile("Test filename", testData.Result, FileExtension.txt);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -36,9 +34,13 @@ namespace application
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddHttpClient();
+
                     services.AddScoped<IApiService, ApiService>();
                     services.AddScoped<IDiskFileService, DiskFileService>();
                     services.AddScoped<IDatabaseFileService, DatabaseFileService>();
+                    services.AddScoped<IFilePathProvider, FilePathProvider>();
+                    services.AddScoped<IFileStorageConfiguration, FileStorageConfiguration>();
 
                     services.AddScoped<IFileRepository, FileRepository>();
 
