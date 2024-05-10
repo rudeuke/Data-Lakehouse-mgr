@@ -37,7 +37,7 @@ namespace application
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddScoped<IFileService, FileService>();
+                    services.AddScoped<IDiskFileService, DiskFileService>();
                     services.AddScoped<IApiService, ApiService>();
 
                     services.AddScoped<IFileRepository, FileRepository>();

@@ -7,6 +7,6 @@ namespace application.Domain.Entities
         [Key]
         public string Name { get; set; } = string.Empty;
         public string Path { get; set; } = string.Empty;
-        public string Contents { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
     }
 }
