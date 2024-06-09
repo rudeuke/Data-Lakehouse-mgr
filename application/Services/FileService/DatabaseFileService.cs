@@ -16,14 +16,14 @@ namespace application.Services.FileService
 
         public void CreateFile(string fileName, string content, FileExtension extension)
         {
-            var file = new Domain.Entities.File
-            {
-                Name = fileName,
-                Path = _filePathProvider.GetFilePath(fileName, extension),
-                Content = content
-            };
+            // var file = new Domain.Entities.File
+            // {
+            //     Name = fileName,
+            //     Path = _filePathProvider.GetFilePath(fileName, extension),
+            //     Content = content
+            // };
 
-            _fileRepository.CreateFileAsync(file);
+            // _fileRepository.CreateFileAsync(file);
         }
     }
 }

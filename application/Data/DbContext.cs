@@ -8,6 +8,12 @@ namespace application.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Domain.Entities.File>().ToTable("Files");
+        }
+
         public DbSet<Domain.Entities.File>? Files { get; set; }
     }
 }
