@@ -15,15 +15,22 @@ namespace application
     {
         static void Main(string[] args)
         {
+            MainAsync(args).Wait();
+        }
+
+        static async Task MainAsync(string[] args)
+        {
             IServiceProvider serviceProvider = CreateHostBuilder(args).Build().Services;
 
             var apiService = serviceProvider.GetRequiredService<IApiService>();
             var diskFileService = serviceProvider.GetRequiredService<IDiskFileService>();
             var databaseFileService = serviceProvider.GetRequiredService<IDatabaseFileService>();
 
-            var testData = apiService.GetApiResponseContentAsync("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en");
-            diskFileService.SaveFileToDisk("Test filename", testData.Result, FileExtension.txt);
-            databaseFileService.CreateFile("Test filename", testData.Result, FileExtension.txt);
+            // var testData = apiService.GetApiResponseContentAsync("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en");
+            var testData = await apiService.GetApiResponseContentAsync("https://http.cat/401");
+            	
+            // diskFileService.SaveFileToDisk("Test filename", testData.Result, FileExtension.txt);
+            databaseFileService.CreateFile("Test filename", testData);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
