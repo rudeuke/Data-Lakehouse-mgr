@@ -7,7 +7,6 @@ using application.Services.FileService;
 using application.Services.ApiService;
 using application.Data;
 using application.Configuration;
-using application.Domain.Enums;
 
 namespace application
 {
@@ -23,13 +22,9 @@ namespace application
             IServiceProvider serviceProvider = CreateHostBuilder(args).Build().Services;
 
             var apiService = serviceProvider.GetRequiredService<IApiService>();
-            var diskFileService = serviceProvider.GetRequiredService<IDiskFileService>();
             var databaseFileService = serviceProvider.GetRequiredService<IDatabaseFileService>();
 
-            // var testData = apiService.GetApiResponseContentAsync("https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en");
             var testData = await apiService.GetApiResponseContentAsync("https://http.cat/401");
-            	
-            // diskFileService.SaveFileToDisk("Test filename", testData.Result, FileExtension.txt);
             databaseFileService.CreateFile("Test filename", testData);
         }
 
@@ -44,10 +39,7 @@ namespace application
                     services.AddHttpClient();
 
                     services.AddScoped<IApiService, ApiService>();
-                    services.AddScoped<IDiskFileService, DiskFileService>();
                     services.AddScoped<IDatabaseFileService, DatabaseFileService>();
-                    services.AddScoped<IFilePathProvider, FilePathProvider>();
-                    services.AddScoped<IFileStorageConfiguration, FileStorageConfiguration>();
 
                     services.AddScoped<IFileRepository, FileRepository>();
 
