@@ -4,6 +4,6 @@ namespace application.Services.FileService
 {
     public interface IDatabaseFileService
     {
-        void CreateFile(string fileName, string content, FileExtension extension);
+        void CreateFile(string fileName, byte[] fileData);
     }
 }
